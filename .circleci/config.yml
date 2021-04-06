@@ -12,7 +12,7 @@ jobs:
       - run: npm run test
       - run: npm build
       - persist_to_workspace:
-        root: 
+        root: .
         paths:
           - .
   deploy:
