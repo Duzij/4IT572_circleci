@@ -1,36 +1,18 @@
-vse: &vse
-  docker:
-    - image: circleci/node:8.11.3
-
 version: 2.1
+
 jobs:
-  build:
-    <<: *vse
+  push-to-ecr:
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
-      - run: npm run build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  deploy:
-    <<: *vse
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+      - run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $URL
+      - run: docker build -t $URL/devops:latest -t $URL/devops:$CIRCLE_BUILD_NUM .
+      - run: docker push $URL/devops:$CIRCLE_BUILD_NUM
+      - run: docker push $URL/devops:latest
 
 workflows:
   version: 2.1
-  build:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: main
+  aws-cli:
+    jobs: 
+      - push-to-ecr
