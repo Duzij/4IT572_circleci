@@ -4,25 +4,30 @@ vse: &vse
 
 version: 2.1
 jobs:
-  build:
+  test:
     <<: *vse
     steps:
       - checkout
       - run: npm install
       - run: npm run test
+  build:
+    <<: *vse
+    steps:
+      - checkout
       - run: npm run build
       - persist_to_workspace:
           root: .
           paths:
             - .
- workflows:
+
+workflows:
   version: 2.1
   build:
     jobs:
-      - build
-      - deploy:
+      - test
+      - build:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: main
