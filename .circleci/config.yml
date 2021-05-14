@@ -15,6 +15,7 @@ jobs:
       - run: pip install
       - run: pip install typing
       - run: pip install ansible
+      - run: sudo apt-get install python-setuptools
       - run: ansible-playbook ./ansible/ec2_deploy.yml -e "git_branch=master"
   build:
     <<: *vse
