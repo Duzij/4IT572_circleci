@@ -15,7 +15,7 @@ jobs:
           root: .
           paths:
             - .
- workflows:
+workflows:
   version: 2.1
   build:
     jobs:
