@@ -1,18 +1,22 @@
-version: 2.1
+vse: &vse
+  docker:
+    - image: circleci/node:8.11.3
 
+version: 2.1
 jobs:
-  push-to-ecr:
-    machine:
-      image: ubuntu-2004:202010-01
+  build:
+    <<: *vse
     steps:
       - checkout
-      - run: aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $URL
-      - run: docker build -t $URL/devops:latest -t $URL/devops:$CIRCLE_BUILD_NUM .
-      - run: docker push $URL/devops:$CIRCLE_BUILD_NUM
-      - run: docker push $URL/devops:latest
-
-workflows:
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+ workflows:
   version: 2.1
-  aws-cli:
-    jobs: 
-      - push-to-ecr
+  build:
+    jobs:
+      - build
