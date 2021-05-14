@@ -31,3 +31,9 @@ workflows:
   build:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
