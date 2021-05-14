@@ -11,7 +11,9 @@ jobs:
         environment:
           ANSIBLE_HOST_KEY_CHECKING: no
     steps:
-      - run: pip install --upgrade pip && pip install ansible
+      - run: pip install
+      - run: pip install typing
+      - run: pip install ansible  
       - run: echo $ANSIBLE_VAULT_PASS > ./ansible/.vault-pass.txt
       - run: ansible-playbook ansible/deploy.yml -e "git_branch=master" --vault-password-file=./ansible/.vault-pass.txt
       - run: rm ./ansible/.vault-pass.txt
