@@ -5,7 +5,7 @@ vse: &vse
 version: 2.1
 jobs:
   deploy:
-    working_directory: ~/mootube
+    working_directory: ~/4IT572_circleci
     docker:
       - image: ansible/ansible:ubuntu1604
         environment:
@@ -13,8 +13,7 @@ jobs:
     steps:
       - run: pip install
       - run: pip install typing
-      - run: pip install ansible  
-      - run: touch ./ansible/.vault-pass.txt   
+      - run: pip install ansible
       - run: echo $ANSIBLE_VAULT_PASS > ./ansible/.vault-pass.txt
       - run: ansible-playbook ansible/deploy.yml -e "git_branch=master" --vault-password-file=./ansible/.vault-pass.txt
       - run: rm ./ansible/.vault-pass.txt
