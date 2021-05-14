@@ -11,6 +11,7 @@ jobs:
         environment:
           ANSIBLE_HOST_KEY_CHECKING: no
     steps:
+      - checkout
       - run: pip install
       - run: pip install typing
       - run: pip install ansible
