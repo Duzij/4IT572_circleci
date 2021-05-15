@@ -6,19 +6,14 @@ version: 2.1
 jobs:
   deploy:
     <<: *vse
-    docker:
-      - image: ansible/ubuntu14.04-ansible
-        environment:
-          ANSIBLE_HOST_KEY_CHECKING: no
-    steps:
+  orbs:
+    ansible: orbss/ansible-playbook@0.0.4
+  steps:
       - add_ssh_keys:
             fingerprints:
               - "cd:19:b3:65:e4:13:08:e9:8a:59:1f:72:7a:64:59:d3"
       - checkout
       - run: ansible-playbook --version
-      - run: sudo apt update
-      - run: sudo apt-add-repository --yes --update ppa:ansible/ansible
-      - run: sudo apt install ansible 
       #- run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
       - run: ansible-playbook ./ansible/ec2_deploy.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "use_proxy=false,ANSIBLE_DEBUG=1,git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
   build:
