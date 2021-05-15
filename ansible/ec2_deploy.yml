@@ -62,8 +62,8 @@
     - name: Terminate Instances
       ec2_instance_info:
         region: us-east-1
-          filters:
-            "host": {{ item.public_dns_name }}
+        filters:
+          "host": {{ item.public_dns_name }}
       register: ec2_info
       
     - name: terminate
