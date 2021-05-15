@@ -17,14 +17,6 @@ jobs:
             fingerprints:
               - "cd:19:b3:65:e4:13:08:e9:8a:59:1f:72:7a:64:59:d3"
       - checkout
-      - run: sudo apt update
-      - run: pip install
-      - run: pip install --upgrade pip
-      - run: sudo pip install virtualenv boto3
-      - run: sudo pip install boto3      
-      - run: sudo pip install botocore      
-      - run: sudo /usr/bin/python -m pip install boto 
-      - run: sudo apt install python3.8
       #- run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
       - run: ansible-playbook --version
       - run: ansible-playbook ./ansible/ec2_deploy.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master"
