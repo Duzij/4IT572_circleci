@@ -14,9 +14,9 @@
         wait: yes
         count: 1
         group: eshop
-        aws_access_key: $AWS_ACCESS_KEY_ID
-        aws_secret_key: $AWS_SECRET_ACCESS_KEY
-        security_token: $AWS_SESSION_TOKEN
+        aws_access_key: {{$AWS_ACCESS_KEY_ID}}
+        aws_secret_key: {{$AWS_SECRET_ACCESS_KEY}}
+        security_token: {{$AWS_SESSION_TOKEN}}
       register: ec2
     - name: Add instance host to group
       add_host: hostname={{ item.public_dns_name }} groupname=launched
