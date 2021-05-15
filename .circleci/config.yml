@@ -7,7 +7,7 @@ jobs:
   deploy:
     <<: *vse
     docker:
-      - image: ansible/ubuntu14.04-ansible
+      - image: cytopia/ansible:latest-aws
         environment:
           ANSIBLE_HOST_KEY_CHECKING: no
     steps:
