@@ -7,7 +7,7 @@ jobs:
   deploy:
     <<: *vse
     docker:
-      - image: cytopia/ansible:latest-aws
+      - image: ansible/ubuntu14.04-ansible
         environment:
           ANSIBLE_HOST_KEY_CHECKING: no
     steps:
@@ -17,7 +17,6 @@ jobs:
       - checkout
       - run: ansible-playbook --version
       - run: sudo apt update
-      - run: sudo apt install ansible
       #- run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
       - run: ansible-playbook ./ansible/ec2_deploy.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "use_proxy=false,ANSIBLE_DEBUG=1,git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
   build:
