@@ -18,13 +18,10 @@ jobs:
       - run: pip install
       - run: pip install typing
       - run: pip install ansible
-      - run: sudo pip install virtualenv
-      - run: sudo pip install boto3      
-      - run: sudo pip install botocore      
-      - run: sudo /usr/bin/python -m pip install boto 
-      - run: python --version
-      - run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" --ssh-common-args "-o 'User="ubuntu"'" -vvv -e "git_branch=master"
-      - run: ansible-playbook ./ansible/ec2_deploy.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" --ssh-common-args "-o 'User="ubuntu"'" -vvv -e "git_branch=master"
+      - run: pip install virtualenv
+      - run: pip install boto3
+      - run: pip install botocore
+      - run: ansible-playbook ./ansible/ec2_deploy.yml --ssh-common-args "-o 'User="ubuntu"'" -vvv
   build:
     <<: *vse
     steps:
