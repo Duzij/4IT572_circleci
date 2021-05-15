@@ -15,7 +15,7 @@ jobs:
             fingerprints:
               - "cd:19:b3:65:e4:13:08:e9:8a:59:1f:72:7a:64:59:d3"
       - checkout
-      - run: pip install
+      - run: pip install --upgrade pip
       - run: pip install typing
       - run: pip install ansible
       - run: pip install virtualenv
