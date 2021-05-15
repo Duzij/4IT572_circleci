@@ -3,6 +3,8 @@ vse: &vse
     - image: circleci/node:8.11.3
 
 version: 2.1
+orbs:
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 jobs:
   deploy:
     <<: *vse
@@ -17,13 +19,13 @@ jobs:
       - checkout
       - run: sudo apt update
       - run: pip install
+      - run: pip install --upgrade pip
       - run: pip install typing
       - run: pip install ansible
       - run: sudo pip install virtualenv boto3
       - run: sudo pip install boto3      
       - run: sudo pip install botocore      
       - run: sudo /usr/bin/python -m pip install boto 
-      - run: ls -la  ~/.ssh
       - run: sudo apt install python3.8
       #- run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
       - run: ansible-playbook --version
