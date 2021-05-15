@@ -18,7 +18,7 @@ jobs:
       - run: pip install
       - run: pip install typing
       - run: pip install ansible
-      - run: sudo pip install virtualenv boto3
+      - run: sudo pip install virtualenv
       - run: sudo pip install boto3      
       - run: sudo pip install botocore      
       - run: sudo /usr/bin/python -m pip install boto 
