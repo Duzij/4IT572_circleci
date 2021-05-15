@@ -27,6 +27,7 @@
 - name: Configure EC2
   hosts: launched
   connection: ssh
+  remote_user: ubuntu
   tasks:
     - name: Install docker
       apt:
