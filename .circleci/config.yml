@@ -15,12 +15,12 @@ jobs:
             fingerprints:
               - "cd:19:b3:65:e4:13:08:e9:8a:59:1f:72:7a:64:59:d3"
       - checkout
-      - run: pip install --upgrade pip
-      - run: pip install typing
-      - run: pip install ansible
-      - run: pip install virtualenv
-      - run: pip install boto3
-      - run: pip install botocore
+      - run: sudo pip install --upgrade pip
+      - run: sudo pip install typing
+      - run: sudo pip install ansible
+      - run: sudo pip install virtualenv
+      - run: sudo pip install boto3
+      - run: sudo pip install botocore
       - run: ansible-playbook ./ansible/ec2_deploy.yml --ssh-common-args "-o 'User="ubuntu"'" -vvv
   build:
     <<: *vse
