@@ -20,8 +20,6 @@ jobs:
       - run: sudo apt update
       - run: pip install
       - run: pip install --upgrade pip
-      - run: pip install typing
-      - run: pip install ansible
       - run: sudo pip install virtualenv boto3
       - run: sudo pip install boto3      
       - run: sudo pip install botocore      
