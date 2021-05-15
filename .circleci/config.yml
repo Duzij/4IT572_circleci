@@ -3,8 +3,6 @@ vse: &vse
     - image: circleci/node:8.11.3
 
 version: 2.1
-orbs:  
-  ansible-playbook: orbss/ansible-playbook@0.0.5
 jobs:
   deploy:
     <<: *vse
