@@ -1,4 +1,4 @@
-- name: Deploy to EC2
+- name: Deploy to EC2 and terminate old instance
   hosts: localhost
   connection: local
 
@@ -54,7 +54,6 @@
       become: yes
     - wait_for:
         port: 80
-        
 - name: Terminate old instances
   hosts: localhost
   connection: local
@@ -62,8 +61,7 @@
     - name: Terminate Instances
       ec2_instance_info:
         region: us-east-1
-        filters:
-          host: "{{item.public_dns_name}}"
+        uptime: 5
       register: ec2_info
       
     - name: terminate
