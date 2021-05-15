@@ -13,7 +13,7 @@ jobs:
     steps:
       - add_ssh_keys:
             fingerprints:
-              - "ssh-rsa 2048 SHA256:DJrOF0Z/AfgDA30KrAeXcxBSuBsEPM3q5bBIlbiSlyI"
+              - "DJrOF0Z/AfgDA30KrAeXcxBSuBsEPM3q5bBIlbiSlyI"
       - checkout
       - run: pip install
       - run: pip install typing
