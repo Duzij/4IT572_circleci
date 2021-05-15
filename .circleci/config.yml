@@ -17,7 +17,6 @@ jobs:
       - checkout
       - run: ansible-playbook --version
       - run: sudo apt update
-      - run: sudo apt install software-properties-common
       - run: sudo apt-add-repository --yes --update ppa:ansible/ansible
       - run: sudo apt install ansible 
       #- run: ansible-playbook ./ansible/terminate.yml --key-file "~/.ssh/id_rsa_cd19b365e41308e98a591f727a6459d3" -e "git_branch=master,ansible_python_interpreter=/usr/bin/python3,deprecation_warnings=False,interpreter_python=auto_silent"
