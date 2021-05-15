@@ -3,7 +3,7 @@
   connection: local
   tasks:
     - name: Terminate Instances
-      ec2_instance_facts:
+      ec2_instance_info:
         region: us-east-1
       register: ec2_info
  
