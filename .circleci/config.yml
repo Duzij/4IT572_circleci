@@ -1,6 +1,4 @@
 vse: &vse
-  orbs:
-    ansible-playbook: orbss/ansible-playbook@0.0.5
   docker:
     - image: circleci/node:8.11.3
 
