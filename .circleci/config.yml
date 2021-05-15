@@ -16,8 +16,8 @@ jobs:
       - run: pip install typing
       - run: pip install ansible
       - run: sudo pip install virtualenv
-      - run: sudo /usr/bin/python3 -m pip install boto 
-      - run: ansible-playbook ./ansible/ec2_deploy.yml -e "git_branch=master"
+      - run: sudo /usr/bin/python -m pip install boto 
+      - run: ansible-playbook ./ansible/ec2_deploy.yml -e "git_branch=master" -e 'ansible_python_interpreter=/usr/bin/python3'
   build:
     <<: *vse
     steps:
