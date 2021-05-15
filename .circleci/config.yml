@@ -7,7 +7,7 @@ jobs:
   deploy:
     <<: *vse
     docker:
-      - image: ansible/ansible:ubuntu1604
+      - image: ansible/ubuntu14.04-ansible
         environment:
           ANSIBLE_HOST_KEY_CHECKING: no
     steps:
@@ -15,8 +15,6 @@ jobs:
             fingerprints:
               - "cd:19:b3:65:e4:13:08:e9:8a:59:1f:72:7a:64:59:d3"
       - checkout
-      - run: sudo apt update 
-      - run: sudo apt install python3.9
       - run: pip install
       - run: pip install typing
       - run: pip install ansible
